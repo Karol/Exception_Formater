@@ -1,0 +1,15 @@
+﻿<Window x:Class="Format_Exception.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Format_Exception"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="485.796" Width="800">
+    <Grid Margin="0,0,0,1">
+        <TextBox x:Name="tbxErrorString" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" VerticalAlignment="Top" Width="772" RenderTransformOrigin="-0.104,-0.238" Text="past error string" TextInput="TbxErrorString_TextInput" TextChanged="TbxErrorString_TextChanged" GotFocus="TbxErrorString_GotFocus"/>
+        <TextBox x:Name="tbxFormated" HorizontalAlignment="Left" Height="371" Margin="10,38,0,0" VerticalAlignment="Top" Width="772" BorderBrush="Black" ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Auto" RenderTransformOrigin="0.5,0.5" HorizontalScrollBarVisibility="Auto"/>
+        <CheckBox x:Name="checkBoxWrap" Content="Wrap" HorizontalAlignment="Left" Margin="10,414,0,0" VerticalAlignment="Top" Checked="CheckBoxWrap_Checked" Unchecked="CheckBoxWrap_Unchecked"/>
+
+    </Grid>
+</Window>
