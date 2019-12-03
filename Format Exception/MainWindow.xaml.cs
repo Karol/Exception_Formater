@@ -29,12 +29,19 @@ namespace Format_Exception
 
         private void ExeptionFormating(string text)
         {
-            string[] separators = new string[] { "--->", "     w ", " at ", "  --- E", "--- K", "Server stack trace" };
+            string[] separators = new string[] { "--->", "     w ", " at ", "  --- E", "--- K", "Server stack trace", "\\r\\n" };
             if (!string.IsNullOrWhiteSpace(text))
             {
                 foreach (var separator in separators)
                 {
-                    text = text.Replace(separator, System.Environment.NewLine + separator);
+                    if (separator.Equals("\\r\\n"))
+                    {
+                        text = text.Replace(separator, System.Environment.NewLine);
+                    }
+                    else
+                    {
+                        text = text.Replace(separator, System.Environment.NewLine + separator);
+                    }
                 }
                 
                 if (tbxFormated != null && !string.IsNullOrWhiteSpace(text))
