@@ -29,18 +29,17 @@ namespace Format_Exception
 
         private void ExeptionFormating(string text)
         {
+            string[] separators = new string[] { "--->", "     w ", " at ", "  --- E", "--- K", "Server stack trace" };
             if (!string.IsNullOrWhiteSpace(text))
             {
-
-                string formated = text.Replace("--->", System.Environment.NewLine + "--->");
-                formated = formated.Replace("     w ", System.Environment.NewLine+ "     w " );
-                formated = formated.Replace("     at ", System.Environment.NewLine + "     at ");
-                formated = formated.Replace(" at ", System.Environment.NewLine + " at ");
-                formated = formated.Replace("  --- E", System.Environment.NewLine + "  --- E");
-                
-                if (tbxFormated != null && !string.IsNullOrWhiteSpace(formated))
+                foreach (var separator in separators)
                 {
-                    tbxFormated.Text = formated;
+                    text = text.Replace(separator, System.Environment.NewLine + separator);
+                }
+                
+                if (tbxFormated != null && !string.IsNullOrWhiteSpace(text))
+                {
+                    tbxFormated.Text = text;
                 }
             }
         }
@@ -71,6 +70,36 @@ namespace Format_Exception
         private void CheckBoxWrap_Unchecked(object sender, RoutedEventArgs e)
         {
             tbxFormated.TextWrapping = TextWrapping.NoWrap;
-        }       
+        }
+
+        private void TbxErrorString_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (!tbxErrorString.Text.Equals("past error string"))
+            {
+                tbxErrorString.SelectAll();
+            }
+        }
+
+        private void SelectText(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null && !tb.Text.Equals("past error string") )
+            {
+                tb.SelectAll();
+            }
+        }
+
+        private void SelectivelyIgnoreMouseButton(object sender, MouseButtonEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null && !tb.Text.Equals("past error string"))
+            {
+                if (!tb.IsKeyboardFocusWithin)
+                {
+                    e.Handled = true;
+                    tb.Focus();
+                }
+            }
+        }
     }
 }
